@@ -12,9 +12,9 @@ func F1() {
 		println("Go一共有25个关键字，按照用途可以分为以下三类：")
 		println("程序声明(2)		import,package")
 		println("实体声明(8)		chan,const,func,interface,map,struct,type,var")
-		println("流程控制(15)		go,select,break,case,continue,default,defer,")
-		println("					else,fallthrough,for,goto,if,range,return,switch")
+		println("流程控制(15)		go,select,break,case,continue,default,defer,else,fallthrough,for,goto,if,range,return,switch")
 		println("关键词在程序中具有特殊含义，不可用作变量名或函数名。")
+		println()
 	}()
 
 	//1-2: Predeclared names
