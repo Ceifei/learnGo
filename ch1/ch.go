@@ -3,7 +3,7 @@ package ch1
 import "fmt"
 
 //Chapter information
-func Chapter() int {
+func Chapter() {
 L:
 	println()
 	println("第1章：程序结构")
@@ -19,9 +19,8 @@ L:
 	var input string
 	fmt.Scanln(&input)
 
-	if input == "0" {
-		return 0
-	} else {
+	if input != "0" {
+
 		F1()
 		goto L
 	}
