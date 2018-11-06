@@ -1,4 +1,4 @@
-package ch1
+package ch2
 
 import "fmt"
 
@@ -6,10 +6,10 @@ import "fmt"
 func Chapter() {
 L:
 	println()
-	println("第1章：程序结构")
+	println("第2章：基本数据类型")
 	println("-----------------------")
-	fmt.Println("1: 标识符")
-	fmt.Println("2: 包")
+	fmt.Println("1: 整型")
+	fmt.Println("2: 浮点型")
 	fmt.Println("3: 变量")
 	fmt.Println("4: 常量")
 	fmt.Println("5: 注释")
@@ -26,13 +26,7 @@ L:
 		case "1":
 			F1()
 		case "2":
-			F2()
-		case "3":
-			F3()
-		case "4":
-			F4()
-		case "5":
-			F5()
+			//F2()
 		}
 
 		goto L

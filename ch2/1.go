@@ -1,4 +1,4 @@
-package ch1
+package ch2
 
 import "fmt"
 
@@ -7,15 +7,14 @@ func F1() {
 
 	println()
 
-	//1-1: Keywords
+	//2-1: Keywords
 	func() {
-		println("1-1 关键字")
+		println("2-1 数组")
 		println("----------------")
 		println("Go一共有25个关键字，按照用途可以分为以下三类：")
-		println("程序声明(2)		import,package")
-		println("实体声明(8)		chan,const,func,interface,map,struct,type,var")
-		println("流程控制(15)		go,select,break,case,continue,default,defer,else,fallthrough,for,goto,if,range,return,switch")
-		println("关键词在程序中具有特殊含义，不可用作变量名或函数名。")
+
+		var a [3]int
+		fmt.Println(a)
 		println()
 	}()
 
@@ -34,14 +33,9 @@ func F1() {
 		println("				panic,recover")
 		println("预定义标识符虽然也具有特殊含义，但在实际编程时可以重新定义，覆盖Go语言内置的含义：")
 		println("var true = 1")
-		println("println(true) // 1")
+		println("println(true)")
 		var true = 1
 		println(true)
-		println("再看一个例子：")
-		println("var int = 12.3")
-		println("fmt.Printf(\"%T %[1]f\\n\", int)")
-		var int = 12.3
-		fmt.Printf("%T %[1]f\n", int)
 		println()
 	}()
 

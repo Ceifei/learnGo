@@ -5,9 +5,9 @@ func F2() {
 
 	println()
 
-	//1-3: Packages
+	//1-4
 	func() {
-		println("1-3 包声明")
+		println("1-4 包声明")
 		println("----------------")
 		println("Go语言中，每一个源代码文件都必需在开头声明包。")
 		println("一般来说，包的名字就是源代码文件所在文件夹的名字：")
@@ -19,9 +19,9 @@ func F2() {
 		println()
 	}()
 
-	//1-4: Import Declarations
+	//1-5
 	func() {
-		println("1-4 引用包")
+		println("1-5 引用包")
 		println("----------------")
 		println("Go语言的源代码文件可以引用若干其他包：")
 		println("import \"fmt\"")

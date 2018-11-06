@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/Ceifei/learnGo/ch1"
+	"github.com/Ceifei/learnGo/ch2"
 )
 
 func main() {
@@ -29,8 +30,12 @@ L:
 
 	//Chapter 1
 	if input == "1" {
-
 		ch1.Chapter()
+	}
+
+	//Chapter 2
+	if input == "2" {
+		ch2.Chapter()
 	}
 
 	//Exit
