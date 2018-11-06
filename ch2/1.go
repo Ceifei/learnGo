@@ -46,7 +46,7 @@ func F1() {
 		println("2-2 基本运算")
 		println("----------------")
 
-		println("Go语言是强类型语言，因此不能类型的变量不能直接运行。")
+		println("Go语言是强类型语言，因此不能类型的变量不能直接运算。")
 		println("var i8 int8 = 3")
 		println("var u8 uint8 = 7")
 		println("var s = i8 + u8 //error")
@@ -137,6 +137,7 @@ func F1() {
 		j, _ := strconv.Atoi(str)
 		fmt.Printf("j\t%T\t%d\n", j, j)
 		println("注意返回整型是int")
+		println("还可以使用strconv.ParseInt()和strconv.ParseUint()")
 		println()
 
 		println("Go语言中，布尔型不能转换为整型。")
