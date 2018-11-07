@@ -27,6 +27,8 @@ L:
 			F1()
 		case "2":
 			F2()
+		case "3":
+			F3()
 		}
 
 		goto L
