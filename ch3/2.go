@@ -2,7 +2,6 @@ package ch3
 
 import (
 	"fmt"
-	"strconv"
 	"unsafe"
 )
 
@@ -13,89 +12,87 @@ func F2() {
 
 	//3-3
 	func() {
-		println("2-4 浮点型")
+		println("3-3 映射")
 		println("-----------------------")
-		println("Go支持2种浮点型数据：float32和float64。")
-		fmt.Printf("类型\t字节\t最小值\t\t最大值\n")
-		fmt.Printf("%T\t%d\t%e\t%e\n", float32(1),
-			unsafe.Sizeof(float32(1)),
-			1.401298464324817070923729583289916131280e-45,
-			3.40282346638528859811704183484516925440e+38)
-		fmt.Printf("%T\t%d\t%e\t%e\n", float64(1),
-			unsafe.Sizeof(float64(1)),
-			1.797693134862315708145274237317043567981e+308,
-			4.940656458412465441765687928682213723651e-324)
-		println("注意，没有float型！")
-		println("浮点数字面值的类型是float64，浮点型变量未赋值时为0.0。")
+		println("Go语言中，映射(maps)是哈希表的一种实现，定义方式如下：")
+		var m map[int]string
+		m2 := make(map[int]string)
+		fmt.Printf(">> m  %T %d\n", m, unsafe.Sizeof(m))
+		fmt.Printf(">> m2 %T %d\n", m2, unsafe.Sizeof(m2))
+		println("其中，int是索引类型，string是值类型。")
 		println()
+
+		println("通过字面值初始化映射：")
+		println("m = map[int]string{")
+		println("	3: \"Kobe\",")
+		println("	4: \"Byrant\",")
+		println("}")
+		m = map[int]string{
+			3: "Kobe",
+			4: "Byrant",
+		}
+		fmt.Printf(">> m  %v\n", m)
+		println("注意到，字面值最后一项的逗号，这个在Go语言中是允许的。")
+		println()
+		println("初始化之后，可以通过下标访问映射的值：")
+		println("m[0] = \"Ceifei\"")
+		println("m[1] = \"Lardon\"")
+		m[0] = "Ceifei"
+		m[1] = "Lardon"
+		fmt.Printf(">> m  %v\n", m)
+		println()
+
+		//delete()
+		println("内置函数delete()用来删除映射的元素：")
+		println("delete(m, 3)")
+		delete(m, 3)
+		fmt.Printf(">> m  %v\n", m)
+		println("")
+
+		//nil
+		println("空映射与零值的映射是不同的：")
+		println("var nilm map[string]int")
+		println("fmt.Println(nilm == nil, len(nilm) == 0)")
+		var nilm map[string]int
+		fmt.Println(">>", nilm == nil, len(nilm) == 0)
+		println("零值的映射未初始化，值还是nil，元素个数也0，此时也不能通过下标访问。")
+		println("vm := map[string]int{}")
+		println("fmt.Println(vm == nil, len(vm) == 0)")
+		vm := map[string]int{}
+		fmt.Println(">>", vm == nil, len(vm) == 0)
+		println("空映射元素个数也是0，但值不是nil，元素个数也0，此时可以通过下标访问。")
+		println("")
 	}()
 
-	//2-5
+	//3-4
 	func() {
-		println("2-5 基本运算")
+		println("3-4 高级")
 		println("----------------")
+		println("可以使用range来遍历映射：")
+		println("for key, val := range m")
+		m := map[string]string{
+			"age":    "20",
+			"name":   "Ceifei",
+			"height": "178",
+		}
+		for key, val := range m {
+			fmt.Println(">> " + key + " : " + val)
+		}
+		println("")
 
-		println("Go语言中，包含浮点数的常量表达式都是float64类型")
-		fmt.Printf("1 + 1.0\t%T\t%f\n", 1+1.0, 1+1.0)
-		fmt.Printf("1.0 / 6\t%T\t%f\n", 1.0/6, 1.0/6)
-		println()
+		//Sets
+		println("Go语言没有集合类型（Sets），可以通过映射来模拟：")
+		println("set := make(map[string]bool)")
+		set := make(map[string]bool)
+		fmt.Printf(">> set  %v\n", set)
+		println("")
 
-		println("如果表达式中只有32位的浮点数变量，则表达式是float32类型")
-		println("var f32 float32 = 12.42")
-		println("fmt.Printf(\"f32 + 1.2\t%T\t%[1]f\\n\", f32+1.2)")
-		var f32 float32 = 12.42
-		fmt.Printf("f32 + 1.2\t%T\t%[1]f\n", f32+1.2)
-		fmt.Printf("f32 + 1.2\t%T\t%[1]f\n", f32/5)
-		println()
-
-		println("32位浮点数与64位浮点数不能运算")
-		println("f := float64(1) + float32(1) //error")
-		println()
-
-		println("浮点数不能参与取余操作：")
-		println("fmt.Println(-5.0%3) //error")
-		println()
-
-		println("浮点数是不精确的，因此切勿用来做比较操作，结果可能出乎意料：")
-		println("fmt.Println(1.1+2.2 == 3.3)")
-		fmt.Println(1.1+2.2 == 3.3)
-
-		println("浮点数也支持变量自增运算：")
-		f32++
-		println("f32++")
-		fmt.Println(f32)
+		//Recursion
+		println("映射的值可以是另一种映射，因此可以构建嵌套的映射：")
+		//println("set := make(map[string]bool)")
+		graph := make(map[string]map[string]bool)
+		fmt.Printf(">> graph %T  %[1]v\n", graph)
+		println("")
 		println()
 	}()
-
-	//2-6
-	func() {
-		println("2-6 类型转换")
-		println("----------------")
-		println("本节介绍各种数据类型转换为浮点型的方法。")
-		println()
-
-		println("整型转浮点数比较容易")
-		println("var u8 uint8 = 12")
-		println("f = float32(u8)")
-		var u8 uint8 = 12
-		f := float32(u8)
-		fmt.Printf("f\t%T\t%f\n", f, f)
-		println()
-
-		println("布尔型不能转化为浮点型")
-		println("f = float32(ture) //error")
-		//var t = true
-		//f = float32(t) //error
-		println()
-
-		println("字符串不能直接转化为浮点型，需要借助strconv.ParseFloat()")
-		println("var s = \"0.1\"")
-		println("f64, _ := strconv.ParseFloat(s, 32)")
-		var s = "0.1"
-		f64, _ := strconv.ParseFloat(s, 32)
-		fmt.Printf("f64\t%T\t%[1]f\n", f64)
-		println()
-
-	}()
-
 }
