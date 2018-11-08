@@ -37,7 +37,7 @@ func F5() {
 		fmt.Printf(">> %T\t%[1]t\n", 1 == 0)
 		println()
 
-		//Conversion
+		//Convertion
 		println("Go语言对数据类型的转换比较保守，大部分数据类型不能直接转换为布尔型：")
 		println("if 1 {	} //error")
 		println("bool(1) //error")

@@ -6,6 +6,7 @@ import (
 
 	"github.com/Ceifei/learnGo/ch1"
 	"github.com/Ceifei/learnGo/ch2"
+	"github.com/Ceifei/learnGo/ch3"
 )
 
 func main() {
@@ -17,9 +18,9 @@ L:
 	println("-----------------------")
 	fmt.Println("1: 程序结构")
 	fmt.Println("2: 基本数据类型")
-	fmt.Println("2: 复合数据类型")
-	fmt.Println("3: 引用类型")
-	fmt.Println("4: 函数")
+	fmt.Println("3: 复合数据类型")
+	fmt.Println("4: 引用类型")
+	fmt.Println("5: 函数")
 	fmt.Println("0: 退出")
 	println("-----------------------")
 	fmt.Print("请选择: ")
@@ -36,6 +37,11 @@ L:
 	//Chapter 2
 	if input == "2" {
 		ch2.Chapter()
+	}
+
+	//Chapter 3
+	if input == "3" {
+		ch3.Chapter()
 	}
 
 	//Exit
