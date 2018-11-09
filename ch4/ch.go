@@ -9,9 +9,9 @@ L:
 	println("第4章：引用类型")
 	println("-----------------------")
 	fmt.Println("1: 指针")
-	// fmt.Println("2: 函数")
+	fmt.Println("2: 函数")
 	// fmt.Println("3: 方法")
-	// fmt.Println("4: 通道")
+	// fmt.Println("4: 通道")/
 	fmt.Println("0: 返回上一层")
 	println("-----------------------")
 	fmt.Print("请选择: ")
