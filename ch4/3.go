@@ -1,124 +1,83 @@
 package ch4
 
 import (
-	"encoding/json"
 	"fmt"
-	"unsafe"
+	"math"
+	"time"
 )
+
+//Point is a struct
+type Point struct{ X, Y float64 }
+
+//Distance is a method associated with Point
+func (p Point) Distance(q Point) float64 {
+	return math.Hypot(q.X-p.X, q.Y-p.Y)
+}
+
+func (p *Point) scale(factor float64) {
+	p.X *= factor
+	p.Y *= factor
+}
 
 //F3 about Structs
 func F3() {
 
 	println()
 
-	//3-5
+	//4-7
 	func() {
-		println("3-5 结构体")
+		println("4-7 方法")
 		println("-----------------------")
+		//Example
+		println("Go语言中，方法是绑定了数据类型的函数：")
+		println("const day = 24 * time.Hour")
+		println("fmt.Println(day.Seconds())")
+		const day = time.Hour * 24
+		fmt.Println(">> ", day.Seconds())
+		println("这里day是一个整型常量，但仍然可以拥有方法。")
+		println()
+
 		//Declaration
-		println("结构体与数组类似，但其属性的数据类型可以不同：")
-		println("type Person struct {")
-		println("	Name string")
-		println("	Age  int")
-		println("	Sex  string")
+		println("定义一个方法：")
+		println("func (p Point) Distance(q Point) float64 {")
+		println("	return math.Hypot(q.X-p.X, q.Y-p.Y)")
 		println("}")
-		type Person struct {
-			Name string
-			Age  int
-			Sex  string
-		}
-		println("这里定义了一个名为Person的结构体，包含三个属性。注意，每个属性结尾没有逗号。")
-		println("Go语言中，结构体是对象的模板，根据结构体可以定义对象：")
-		println("var p Person")
-		var p Person
-		fmt.Printf(">> p %T %[1]v %d\n", p, unsafe.Sizeof(p))
-		println("注意到，一个没有赋值的结构体对象占据了40个字节。")
+		println("其中p被称为“接受者”，是方法调用的主体。")
+		println("与命名函数一样，方法只能定义在包级别，不能定义在其他函数内部。")
+		println("Go语言不允许定义匿名方法。")
 		println()
 
-		//Initialization
-		println("结构体对象通过点号访问其属性：")
-		println("p.Name = \"Ceifei\"")
-		println("p.Age = 22")
-		p.Name = "Ceifei"
-		p.Age = 22
-		fmt.Printf(">> p %T %[1]v %d\n", p, unsafe.Sizeof(p))
+		//Invoke
+		println("调用方法：")
+		println("p := Point{0, 0}")
+		println("q := Point{3, 4}")
+		println("fmt.Println(p.Distance(q))")
+		println("fmt.Println(q.Distance(p))")
+		p := Point{0, 0}
+		q := Point{3, 4}
+		fmt.Println(">> ", p.Distance(q))
+		fmt.Println(">> ", q.Distance(p))
+		println("p和q都是Point对象，因此都可以调用Distance方法。")
 		println()
 
-		println("可以通过结构体字面量来初始化对象：")
-		p = Person{
-			Name: "Ceifei Lardon",
-			Age:  21,
-			Sex:  "M"}
-		fmt.Printf(">> p %T %[1]v %d\n", p, unsafe.Sizeof(p))
-		println("还可以把字面值简化：")
-		println("p = Person{\"Kobe Bryant\", 21, \"M\"}")
-		p = Person{"Kobe Bryant", 21, "M"}
-		fmt.Printf(">> p %T %[1]v %d\n", p, unsafe.Sizeof(p))
-		println("花括号内的值与结构体属性的个数和顺序一致。")
-		println()
-
-		//Unexported fields
-		println("Go语言中，结构体属性的首字母大小写决定了可访问性：")
-		println("type T struct{a, b int}")
-		type T struct{ a, b int }
-		println("T中的属性都是小写字母开头，因此在包外均不能被访问。")
-		println()
-
-		//Comparsion
-		println("结构体对象可以进行比较：")
-		println("p1 := Point{1, 2}")
-		println("p2 := Point{1, 2}")
-		type Point struct{ X, Y int }
-		p1 := Point{1, 2}
-		p2 := Point{1, 2}
-		fmt.Println(">> p1 == p2", p1 == p2)
-		println("只有两个对象的所有属性值相等时，对象才相等：")
-		println("p2.X = 2")
-		p2.X = 2
-		fmt.Println(">> p1 == p2", p1 == p2)
+		//Pointer Receivers
+		println("当需要操作调用者本身时，方法的接受者应该是一个指针：")
+		println("func (p *Point) scale(factor float64) {")
+		println("	p.X *= factor")
+		println("	p.Y *= factor")
+		println("}：")
+		println("q.scale(2)")
+		println("fmt.Println(q)")
+		q.scale(2)
+		fmt.Println(">> ", q)
 		println()
 	}()
 
-	//3-6
+	//4-8
 	func() {
-		println("3-6 高级")
+		println("4-8 ")
 		println("----------------")
-		//Embedding
-		println("一个结构体可以嵌入另外一个结构体：")
-		type Field struct {
-			Name    string
-			Type    string
-			Default string
-			IsNull  int
-		}
-		type Table struct {
-			Name string
-			Field
-		}
-		println("Table结构体嵌入了Field结构体，注意定义的顺序。")
-		var tb Table
-		tb.Field.Name = "ID"
-		tb.Field.Type = "INT"
-		tb.Field.IsNull = 0
-		fmt.Printf(">> tb %T %#[1]v %d\n", tb, unsafe.Sizeof(tb))
-		println("运用嵌入，可以构建复杂的树状结构体")
-		println()
 
-		//JSON
-		println("结构体与JSON类似，Go语言支持在结构体中添加JSON标记：")
-		type Movie struct {
-			Title string
-			Year  int  `json:"released"`
-			Color bool `json:"color,omitempty"`
-		}
-		println("反括号内就是JSON标记，用于转换json字符串。")
-		var movies = []Movie{
-			{"Casablanca", 1942, false},
-			{"Cool Hand Luke", 1967, true},
-			{"Bullitt", 1968, true},
-		}
-		json, _ := json.Marshal(movies)
-		fmt.Printf("%s\n", json)
 		println()
 	}()
 

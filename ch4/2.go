@@ -179,7 +179,7 @@ func F2() {
 	func() {
 		println("4-6 异常处理")
 		println("----------------")
-		println("Go将运行时错误成为“疼痛”（panic），相应的错误处理机制叫做“恢复”（recover）。")
+		println("Go将运行时错误称为“疼痛”（panic），相应的错误处理机制叫做“恢复”（recover）。")
 		println("总体而言，Go语言的异常处理机制还不成熟，有待以后的发展。")
 		println()
 	}()
