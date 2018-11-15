@@ -5,6 +5,10 @@ import (
 	"unsafe"
 )
 
+func zero(ptr *int) {
+	*ptr = 0
+}
+
 //F1 about Pointers
 func F1() {
 
@@ -52,6 +56,16 @@ func F1() {
 		println("ptr == ptrInt //error")
 		fmt.Println(">> ptr == &i ", ptr == &i)
 		//fmt.Println(">> ptr == ptrInt ", ptr == ptrInt)
+		println()
+
+		//Function Parameters
+		println("很多时候，我们希望函数修改外部变量值，这个时候需要用指针做参数：")
+		println("func zero(ptr *int) { *ptr = 0}")
+		println("x := 5")
+		println("zero(&x)")
+		x := 5
+		zero(&x)
+		fmt.Println(">> x =", x)
 		println()
 
 	}()
